@@ -24,8 +24,7 @@ getCurrentTime();
 function searchCity(event) {
   event.preventDefault();
   let newCity = document.querySelector("#city-search");
-  let currentCity = document.querySelector("#current-city");
-  currentCity.innerHTML = `${newCity.value}`;
+
   axios
     .get(`${apiUrl}q=${newCity.value}&units=metric&appid=${apiKey}`)
     .then(showTemperature);
@@ -48,8 +47,20 @@ function changeCity(response) {
 
 function showTemperature(response) {
   let temperature = Math.round(response.data.main.temp);
-  let newTemp = document.querySelector("#today-degree");
-  newTemp.innerHTML = temperature;
+  let newTemp = (document.querySelector("#today-degree").innerHTML =
+    temperature);
+  let newCity = response.data.name;
+  let currentCity = (document.querySelector("#current-city").innerHTML =
+    newCity);
+  let currentHumidity = response.data.main.humidity;
+  let humidity = (document.querySelector("#humidity").innerHTML =
+    currentHumidity);
+  let currentWind = Math.round(response.data.wind.speed);
+  let wind = (document.querySelector("#wind").innerHTML = currentWind);
+  console.log(response);
+  let currentDescription = response.data.weather[0].main;
+  let description = (document.querySelector("#description").innerHTML =
+    currentDescription);
 }
 let search = document.querySelector("form");
 search.addEventListener("submit", searchCity);
