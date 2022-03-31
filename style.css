@@ -46,3 +46,7 @@ video {
   width: 100%;
   height: 150px;
 }
+.end {
+  text-align: center;
+  padding-top: 10px;
+}
