@@ -27,6 +27,7 @@ h1 {
 }
 h4 {
   font-style: italic;
+  font-size: 20px;
 }
 
 video {
@@ -49,4 +50,19 @@ video {
 .end {
   text-align: center;
   padding-top: 10px;
+}
+.weather-degree {
+  position: relative;
+  top: -10px;
+  font-size: 16px;
+  left: 10px;
+}
+.active {
+  color: #22313f;
+  cursor: default;
+  text-decoration: none;
+}
+.active:hover {
+  text-decoration: none;
+  color: #22313f;
 }

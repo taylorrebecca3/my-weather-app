@@ -1,5 +1,5 @@
-function getCurrentTime() {
-  let currentDate = new Date();
+function formatDate(timestamp) {
+  let currentDate = new Date(timestamp);
 
   let days = [
     "Sunday",
@@ -16,10 +16,8 @@ function getCurrentTime() {
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
-  let currentTime = document.querySelector("#current-date");
-  currentTime.innerHTML = `${day} ${hour}:${minutes}`;
+  return `${day} ${hour}:${minutes}`;
 }
-getCurrentTime();
 
 function searchCity(event) {
   event.preventDefault();
@@ -46,9 +44,9 @@ function changeCity(response) {
 }
 
 function showTemperature(response) {
-  let temperature = Math.round(response.data.main.temp);
+  celsiusTemperature = response.data.main.temp;
   let newTemp = (document.querySelector("#today-degree").innerHTML =
-    temperature);
+    Math.round(celsiusTemperature));
   let newCity = response.data.name;
   let currentCity = (document.querySelector("#current-city").innerHTML =
     newCity);
@@ -57,7 +55,6 @@ function showTemperature(response) {
     currentHumidity);
   let currentWind = Math.round(response.data.wind.speed);
   let wind = (document.querySelector("#wind").innerHTML = currentWind);
-  console.log(response);
   let currentDescription = response.data.weather[0].main;
   let description = (document.querySelector("#description").innerHTML =
     currentDescription);
@@ -67,12 +64,46 @@ function showTemperature(response) {
     "src",
     `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
+  let date = (document.querySelector("#current-date").innerHTML = formatDate(
+    response.data.dt * 1000
+  ));
 }
+function showFirstCity(city) {
+  axios
+    .get(`${apiUrl}q=${city}&units=metric&appid=${apiKey}`)
+    .then(showTemperature);
+}
+function showFahrenheitDegree(event) {
+  event.preventDefault();
+  let currentTemperature = document.querySelector("#today-degree");
+  let fahrenheitDegree = (celsiusTemperature * 9) / 5 + 32;
+  currentTemperature.innerHTML = Math.round(fahrenheitDegree);
+  fahrenheitTemperature.classList.add("active");
+  celsiusLink.classList.remove("active");
+}
+function showCelsiusTemperature(event) {
+  event.preventDefault();
+  let currentTemperature = document.querySelector("#today-degree");
+  currentTemperature.innerHTML = Math.round(celsiusTemperature);
+  celsiusLink.classList.add("active");
+  fahrenheitTemperature.classList.remove("active");
+}
+
+let celsiusTemperature = null;
+
 let search = document.querySelector("form");
 search.addEventListener("submit", searchCity);
 
 let currentLocation = document.querySelector("button");
 currentLocation.addEventListener("click", showCurrentLocation);
 
+let fahrenheitTemperature = document.querySelector("#fahrenheit-link");
+fahrenheitTemperature.addEventListener("click", showFahrenheitDegree);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsiusTemperature);
+
 let apiKey = "ffb9bb5b2e4c77c5b97eed778979d6bf";
 let apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
+
+showFirstCity("Toronto");
