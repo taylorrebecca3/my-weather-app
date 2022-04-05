@@ -19,6 +19,31 @@ function formatDate(timestamp) {
   return `${day} ${hour}:${minutes}`;
 }
 
+function displayForecast() {
+  let days = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday"];
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+        <div class="card" style="width: 12rem">
+          <div class="card-body">
+            <h5 class="card-title">${day}</h5>
+            <img
+              src="https://openweathermap.org/img/wn/01d@2x.png"
+              width="65px"
+            />
+            <p class="card-text">
+              -5°c | <span class="temperature-min">-10°c</span><br />
+            </p>
+          </div>
+        </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function searchCity(event) {
   event.preventDefault();
   let newCity = document.querySelector("#city-search");
@@ -107,3 +132,4 @@ let apiKey = "ffb9bb5b2e4c77c5b97eed778979d6bf";
 let apiUrl = "https://api.openweathermap.org/data/2.5/weather?";
 
 showFirstCity("Toronto");
+displayForecast();

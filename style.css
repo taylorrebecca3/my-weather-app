@@ -66,3 +66,6 @@ video {
   text-decoration: none;
   color: #22313f;
 }
+.temperature-min {
+  opacity: 0.8;
+}
