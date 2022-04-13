@@ -64,7 +64,14 @@ function displayForecast(response) {
         </div>`;
     }
   });
-  forecastHTML = forecastHTML + `</div>`;
+  forecastHTML =
+    forecastHTML +
+    `</div><p class="end">
+      <a href="https://github.com/taylorrebecca3/my-weather-app"
+        >Open-source code</a
+      >
+      by Rebecca Taylor
+    </p>`;
   forecastElement.innerHTML = forecastHTML;
 }
 
