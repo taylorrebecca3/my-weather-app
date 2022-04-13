@@ -57,15 +57,7 @@ video {
   font-size: 16px;
   left: 10px;
 }
-.active {
-  color: #22313f;
-  cursor: default;
-  text-decoration: none;
-}
-.active:hover {
-  text-decoration: none;
-  color: #22313f;
-}
+
 .temperature-min {
   opacity: 0.8;
 }
