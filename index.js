@@ -67,7 +67,7 @@ function displayForecast(response) {
   forecastHTML =
     forecastHTML +
     `</div><p class="end">
-      <a href="https://github.com/taylorrebecca3/my-weather-app"
+      <a href="https://github.com/taylorrebecca3/my-weather-app" target="_blank"
         >Open-source code</a
       >
       by Rebecca Taylor

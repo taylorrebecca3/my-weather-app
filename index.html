@@ -21,9 +21,8 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
+     <nav class="navbar sticky-top" id="banner"><h1>What's the weather? 🌤</h1></nav>
     <div class="container">
-      <h1>What's the weather? 🌤</h1>
-      <div class="spacer"></div>
       <form>
         <input
           class="search-bar"
@@ -43,7 +42,7 @@
       </form>
 
       <div class="row row-cols-2">
-        <div class="card" style="width: 25rem">
+        <div class="card" style="width: 25rem; height: 275px">
           <div class="card-body">
             <h3 id="current-city"></h3>
             <h4>Last updated: <span id="current-date"></span></h4>
@@ -56,7 +55,7 @@
             <img src="" alt="" id="current-icon" />
           </div>
         </div>
-        <div class="card" style="width: 9rem">
+        <div class="card" style="width: 9rem; height: 150px">
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
               <strong>Humidity:</strong> <span id="humidity">95</span>%
